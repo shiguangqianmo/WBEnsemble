@@ -38,28 +38,36 @@ Take fine-tuning ResNet-50, ViT-S/16, Volo-d1 and ViP-Small/7 on the IP102 datas
 <summary>
   train ResNet-50
 </summary>
+
   `python3 train_basic_model.py /path/to/IP102 --num-classes 102 --img-size 224 --model resnet50 --pretrained --epochs 200 --opt adamw --lr 2e-3 --sched cosine -b 128 --reprob 0.25 --drop-path 0.2 --warmup-epochs 20 --weight-decay 5e-4`
+
 </details>
 
 <details>
 <summary>
   train ViT-S/16
 </summary>
+
   `python3 train_basic_model.py /path/to/IP102 --num-classes 102 --img-size 224 --model vit_small_patch16_224 --pretrained --epochs 200 --opt adamw --lr 1e-4 --min-lr 1e-5 --sched cosine -b 64 --weight-decay 5e-4 --drop-path 0.2`
+
 </details>
 
 <details>
 <summary>
   train Volo-d1
 </summary>
+
   `python3 train_basic_model.py /path/to/IP102 --num-classes 102 --model volo_d1 --img-size 224 -b 64 --lr 8.0e-6 --min-lr 4.0e-6 --drop-path 0.1 --epochs 200 --apex-amp --weight-decay 1.0e-8 --warmup-epochs 5 --finetune /path/to/pre-trained-volo_d1`
+
 </details>
 
 <details>
 <summary>
   train ViP-Small/7
 </summary>
+
   `python3 train_basic_model.py /path/to/IP102 --num-classes 102 --model vip_s7 -b 64 --opt adamw --epochs 200 --sched cosine --apex-amp --img-size 224 --drop-path 0.1 --lr 2e-3 --weight-decay 0.05  --warmup-epochs 20 --finetune /path/to/pre-trained-vip_s7`
+
 </details>
 
 
@@ -73,21 +81,27 @@ To evaluate our basic models, run:
 <summary>
   evaluate ResNet-50
 </summary>
+
   `python3 validate.py /path/to/IP102 --split test --model resnet50 --num-classes 102 --img-size 224 --checkpoint /path/to/checkpoint --no-test-pool -b 64`
+
 </details>
 
 <details>
 <summary>
   evaluate ViT-S/16
 </summary>
+
   `python3 validate.py /path/to/IP102 --split test --model vit_small_patch16_224 --num-classes 102 --img-size 224 --checkpoint /path/to/checkpoint --no-test-pool -b 64`
+
 </details>
 
 <details>
 <summary>
   evaluate Volo-d1
 </summary>
+
   `python3 validate.py /path/to/IP102 --split test --model volo_d1 --num-classes 102 --img-size 224 --checkpoint /path/to/checkpoint --no-test-pool -b 64`
+
 </details>
 
 
@@ -95,7 +109,9 @@ To evaluate our basic models, run:
 <summary>
   evaluate ViP-Small/7
 </summary>
+
   `python3 validate.py /path/to/IP102 --split test --model vip_s7 --num-classes 102 --img-size 224 --checkpoint /path/to/checkpoint --no-test-pool -b 64`
+
 </details>
 
 
