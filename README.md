@@ -39,7 +39,7 @@ Take fine-tuning ResNet-50, ViT-S/16, Volo-d1 and ViP-Small/7 on the IP102 datas
   train ResNet-50
 </summary>
 
-  	python3 train_basic_model.py /path/to/IP102 --num-classes 102 --img-size 224 --model resnet50 --pretrained --epochs 200 --opt adamw --lr 2e-3 --sched cosine -b 128 --reprob 0.25 --drop-path 0.2 --warmup-epochs 20 --weight-decay 5e-4
+  	python3 train_basic_model.py /path/to/IP102 --num-classes 102 --img-size 224 --model resnet50 --pretrained --epochs 200 --opt adamw --lr 2e-3  --min-lr 1e-5 --sched cosine -b 128 --drop-path 0.2 --warmup-epochs 20 --weight-decay 5e-4
 
 </details>
 
@@ -48,7 +48,7 @@ Take fine-tuning ResNet-50, ViT-S/16, Volo-d1 and ViP-Small/7 on the IP102 datas
   train ViT-S/16
 </summary>
 
-  	python3 train_basic_model.py /path/to/IP102 --num-classes 102 --img-size 224 --model vit_small_patch16_224 --pretrained --epochs 200 --opt adamw --lr 1e-4 --min-lr 1e-5 --sched cosine -b 64 --weight-decay 5e-4 --drop-path 0.2
+  	python3 train_basic_model.py /path/to/IP102 --num-classes 102 --img-size 224 --model vit_small_patch16_224 --pretrained --epochs 200 --opt adamw --lr 1e-4 --min-lr 1e-5 --sched cosine -b 64  --drop-path 0.2 --weight-decay 5e-4
 
 </details>
 
@@ -66,7 +66,7 @@ Take fine-tuning ResNet-50, ViT-S/16, Volo-d1 and ViP-Small/7 on the IP102 datas
   train ViP-Small/7
 </summary>
 
-  	python3 train_basic_model.py /path/to/IP102 --num-classes 102 --model vip_s7 -b 64 --opt adamw --epochs 200 --sched cosine --apex-amp --img-size 224 --drop-path 0.1 --lr 2e-3 --weight-decay 0.05  --warmup-epochs 20 --finetune /path/to/pre-trained-vip_s7
+  	python3 train_basic_model.py /path/to/IP102 --num-classes 102 --model vip_s7 -b 64 --opt adamw --epochs 200 --sched cosine --apex-amp --img-size 224 --drop-path 0.1 --lr 2e-3 --min-lr 1e-5 --weight-decay 0.05  --warmup-epochs 20 --finetune /path/to/pre-trained-vip_s7
 
 </details>
 
@@ -82,7 +82,7 @@ To evaluate our basic models, run:
   evaluate ResNet-50
 </summary>
 
-  	python3 validate.py /path/to/IP102 --split test --model resnet50 --num-classes 102 --img-size 224 --checkpoint /path/to/checkpoint --no-test-pool -b 64
+  	python3 validate.py /path/to/IP102 --split test --model resnet50 --num-classes 102 --img-size 224 --checkpoint /path/to/checkpoint --no-test-pool -b 128
 
 </details>
 
