@@ -1,14 +1,14 @@
 """
 Basic models training and evaluating script
-This script is modified from pytorch-image-models by Ross Wightman (https://github.com/rwightman/pytorch-image-models/)
-and Volo (https://github.com/sail-sg/volo)
+This script is modified from pytorch-image-models by Ross Wightman (https://github.com/rwightman/pytorch-image-models/),
+Volo (https://github.com/sail-sg/volo) and Vision Permutator (https://github.com/houqb/VisionPermutator)
 
 """
 import argparse
 import time
 import yaml
 import os
-os.environ['CUDA_VISIBLE_DEVICES'] = '1'
+os.environ['CUDA_VISIBLE_DEVICES'] = '0'
 import logging
 from collections import OrderedDict
 from contextlib import suppress
