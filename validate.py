@@ -1,7 +1,6 @@
 """
-ImageNet Validation Script
-Adapted from https://github.com/rwightman/pytorch-image-models
-The script is further extend to evaluate VOLO
+Adapted from https://github.com/rwightman/pytorch-image-models and https://github.com/sail-sg/volo
+The script is further extend to evaluate basic models
 """
 import argparse
 import os

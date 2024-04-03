@@ -1,8 +1,8 @@
 """
-ViP training and evaluating script
+Basic models training and evaluating script
 This script is modified from pytorch-image-models by Ross Wightman (https://github.com/rwightman/pytorch-image-models/)
-It was started from an early version of the PyTorch ImageNet example
-(https://github.com/pytorch/examples/tree/master/imagenet)
+and Volo (https://github.com/sail-sg/volo)
+
 """
 import argparse
 import time
