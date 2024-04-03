@@ -12,7 +12,10 @@ from sklearn.metrics import accuracy_score
 from tools.utils import get_ensemble_combination, read_data
 
 
-def hard_voting_2model_acc(pred_list, labels):
+random.seed(10)
+
+
+def hard_voting_acc(pred_list, labels):
     pred_list = pred_list.permute(1, 0, 2)
     _, preds = pred_list.max(dim=2)
 
@@ -21,53 +24,8 @@ def hard_voting_2model_acc(pred_list, labels):
 
     for i in range(num):
         counter = Counter(preds[i].tolist())
-        if counter.__len__() == 2:
-            final_pred[i] = random.choice(list(counter.keys()))
-        else:
-            final_pred[i] = counter.most_common()[0][0]
-    acc = accuracy_score(labels, final_pred) * 100
-    # print('acc:', acc)
-    return acc
-
-
-def hard_voting_3model_acc(pred_list, labels):
-    pred_list = pred_list.permute(1, 0, 2)
-    _, preds = pred_list.max(dim=2)
-
-    num = labels.shape[0]
-    final_pred = torch.zeros(num)
-
-    for i in range(num):
-        counter = Counter(preds[i].tolist())
-        if counter.__len__() == 3:
-            final_pred[i] = random.choice(list(counter.keys()))
-        else:
-            final_pred[i] = counter.most_common()[0][0]
-    acc = accuracy_score(labels, final_pred) * 100
-    # print('acc:', acc)
-    return acc
-
-
-def hard_voting_4model_acc(pred_list, labels):
-    pred_list = pred_list.permute(1, 0, 2)
-    _, preds = pred_list.max(dim=2)
-
-    num = labels.shape[0]
-    final_pred = torch.zeros(num)
-
-    for i in range(num):
-        counter = Counter(preds[i].tolist())
-        if counter.__len__() == 4:
-            final_pred[i] = random.choice(list(counter.keys()))
-        elif counter.__len__() == 3:
-            final_pred[i] = counter.most_common()[0][0]
-        elif counter.__len__() == 2:
-            if list(counter.values())[0] == 2:
-                final_pred[i] = random.choice(list(counter.keys()))
-            else:
-                final_pred[i] = counter.most_common()[0][0]
-        else:
-            final_pred[i] = counter.most_common()[0][0]
+        votes = counter.most_common()
+        final_pred[i] = votes[random.randint(0, len(votes) - 1)][0]
     acc = accuracy_score(labels, final_pred) * 100
     # print('acc:', acc)
     return acc
@@ -104,15 +62,9 @@ if __name__ == '__main__':
 
         # Hard Voting
         print('Hard Voting')
-        if len(cur_comb) == 2:
-            print('val: ', hard_voting_2model_acc(val_pred[cur_comb], val_labels))
-            print('test: ', hard_voting_2model_acc(test_pred[cur_comb], test_labels))
-        elif len(cur_comb) == 3:
-            print('val: ', hard_voting_2model_acc(val_pred[cur_comb], val_labels))
-            print('test: ', hard_voting_3model_acc(test_pred[cur_comb], test_labels))
-        elif len(cur_comb) == 4:
-            print('val: ', hard_voting_2model_acc(val_pred[cur_comb], val_labels))
-            print('test: ', hard_voting_3model_acc(test_pred[cur_comb], test_labels))
+        print('val: ', hard_voting_acc(val_pred[cur_comb], val_labels))
+        print('test: ', hard_voting_acc(test_pred[cur_comb], test_labels))
+
 
 
 
