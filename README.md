@@ -1,4 +1,4 @@
-This is a PyTorch implementation of our paper.  We present weight-based ensemble method for crop pest identification: VecEnsemble and MatEnsenble. Our method achieved the highest accuracy of 77.39% on the large-scale complex-scene IP102 dataset.
+This is a PyTorch implementation of our paper.  We present weight-based ensemble methods for crop pest identification: VecEnsemble and MatEnsenble. Our method achieved the highest accuracy of 77.39% on the large-scale complex-scene IP102 dataset.
 
 
 
