@@ -2,14 +2,14 @@ import torch
 from timm.utils import accuracy
 import numpy as np
 from tqdm import tqdm
-from model_list import model_list
+from tools.model_list import model_list
 from VecEnsemble import _cal_w
 from MatEnsemble import _cal_W
-from cal_metrics import cal_acc
+from tools.cal_metrics import cal_acc
 from collections import Counter
 import random
 from sklearn.metrics import accuracy_score
-from utils import get_ensemble_combination, read_data
+from tools.utils import get_ensemble_combination, read_data
 
 
 def hard_voting_2model_acc(pred_list, labels):
@@ -74,10 +74,8 @@ def hard_voting_4model_acc(pred_list, labels):
 
 
 if __name__ == '__main__':
-    val_pred = torch.load('../output/IP102_val_pred_list.pth')
-    val_labels = torch.load('../output/IP102_val_labels.pth')
-    test_pred = torch.load('../output/IP102_test_pred_list.pth')
-    test_labels = torch.load('../output/IP102_test_labels.pth')
+    val_pred, val_labels = read_data('IP102', 'val')
+    test_pred, test_labels = read_data('IP102', 'test')
     ensemble_combination = get_ensemble_combination(val_pred.shape[0])
 
     for cur_comb in ensemble_combination:

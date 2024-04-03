@@ -39,7 +39,7 @@ Take fine-tuning ResNet-50, ViT-S/16, Volo-d1 and ViP-Small/7 on the IP102 datas
   train ResNet-50
 </summary>
 
-  	`python3 train_basic_model.py /path/to/IP102 --num-classes 102 --img-size 224 --model resnet50 --pretrained --epochs 200 --opt adamw --lr 2e-3 --sched cosine -b 128 --reprob 0.25 --drop-path 0.2 --warmup-epochs 20 --weight-decay 5e-4`
+  	python3 train_basic_model.py /path/to/IP102 --num-classes 102 --img-size 224 --model resnet50 --pretrained --epochs 200 --opt adamw --lr 2e-3 --sched cosine -b 128 --reprob 0.25 --drop-path 0.2 --warmup-epochs 20 --weight-decay 5e-4
 
 </details>
 
@@ -48,7 +48,7 @@ Take fine-tuning ResNet-50, ViT-S/16, Volo-d1 and ViP-Small/7 on the IP102 datas
   train ViT-S/16
 </summary>
 
-  	`python3 train_basic_model.py /path/to/IP102 --num-classes 102 --img-size 224 --model vit_small_patch16_224 --pretrained --epochs 200 --opt adamw --lr 1e-4 --min-lr 1e-5 --sched cosine -b 64 --weight-decay 5e-4 --drop-path 0.2`
+  	python3 train_basic_model.py /path/to/IP102 --num-classes 102 --img-size 224 --model vit_small_patch16_224 --pretrained --epochs 200 --opt adamw --lr 1e-4 --min-lr 1e-5 --sched cosine -b 64 --weight-decay 5e-4 --drop-path 0.2
 
 </details>
 
@@ -57,7 +57,7 @@ Take fine-tuning ResNet-50, ViT-S/16, Volo-d1 and ViP-Small/7 on the IP102 datas
   train Volo-d1
 </summary>
 
-  	`python3 train_basic_model.py /path/to/IP102 --num-classes 102 --model volo_d1 --img-size 224 -b 64 --lr 8.0e-6 --min-lr 4.0e-6 --drop-path 0.1 --epochs 200 --apex-amp --weight-decay 1.0e-8 --warmup-epochs 5 --finetune /path/to/pre-trained-volo_d1`
+  	python3 train_basic_model.py /path/to/IP102 --num-classes 102 --model volo_d1 --img-size 224 -b 64 --lr 8.0e-6 --min-lr 4.0e-6 --drop-path 0.1 --epochs 200 --apex-amp --weight-decay 1.0e-8 --warmup-epochs 5 --finetune /path/to/pre-trained-volo_d1
 
 </details>
 
@@ -66,7 +66,7 @@ Take fine-tuning ResNet-50, ViT-S/16, Volo-d1 and ViP-Small/7 on the IP102 datas
   train ViP-Small/7
 </summary>
 
-  	`python3 train_basic_model.py /path/to/IP102 --num-classes 102 --model vip_s7 -b 64 --opt adamw --epochs 200 --sched cosine --apex-amp --img-size 224 --drop-path 0.1 --lr 2e-3 --weight-decay 0.05  --warmup-epochs 20 --finetune /path/to/pre-trained-vip_s7`
+  	python3 train_basic_model.py /path/to/IP102 --num-classes 102 --model vip_s7 -b 64 --opt adamw --epochs 200 --sched cosine --apex-amp --img-size 224 --drop-path 0.1 --lr 2e-3 --weight-decay 0.05  --warmup-epochs 20 --finetune /path/to/pre-trained-vip_s7
 
 </details>
 
@@ -82,7 +82,7 @@ To evaluate our basic models, run:
   evaluate ResNet-50
 </summary>
 
-  	`python3 validate.py /path/to/IP102 --split test --model resnet50 --num-classes 102 --img-size 224 --checkpoint /path/to/checkpoint --no-test-pool -b 64`
+  	python3 validate.py /path/to/IP102 --split test --model resnet50 --num-classes 102 --img-size 224 --checkpoint /path/to/checkpoint --no-test-pool -b 64
 
 </details>
 
@@ -91,7 +91,7 @@ To evaluate our basic models, run:
   evaluate ViT-S/16
 </summary>
 
-  	`python3 validate.py /path/to/IP102 --split test --model vit_small_patch16_224 --num-classes 102 --img-size 224 --checkpoint /path/to/checkpoint --no-test-pool -b 64`
+  	python3 validate.py /path/to/IP102 --split test --model vit_small_patch16_224 --num-classes 102 --img-size 224 --checkpoint /path/to/checkpoint --no-test-pool -b 64
 
 </details>
 
@@ -100,7 +100,7 @@ To evaluate our basic models, run:
   evaluate Volo-d1
 </summary>
 
-  	`python3 validate.py /path/to/IP102 --split test --model volo_d1 --num-classes 102 --img-size 224 --checkpoint /path/to/checkpoint --no-test-pool -b 64`
+  	python3 validate.py /path/to/IP102 --split test --model volo_d1 --num-classes 102 --img-size 224 --checkpoint /path/to/checkpoint --no-test-pool -b 64
 
 </details>
 
@@ -110,7 +110,7 @@ To evaluate our basic models, run:
   evaluate ViP-Small/7
 </summary>
 
-  	`python3 validate.py /path/to/IP102 --split test --model vip_s7 --num-classes 102 --img-size 224 --checkpoint /path/to/checkpoint --no-test-pool -b 64`
+  	python3 validate.py /path/to/IP102 --split test --model vip_s7 --num-classes 102 --img-size 224 --checkpoint /path/to/checkpoint --no-test-pool -b 64
 
 </details>
 
@@ -129,14 +129,21 @@ All basic models are trained and evaluated on a single TITAN Xp 12G GPU.
 
 # 4. Ensemble methods
 
-Write the names and paths of the basic models to be integrated into ". /tools/model_list.py", and run record_outputs.py to get the outputs of all the models on the validation and test set:
+Write the names and paths of the basic models to be integrated into `. /tools/model_list.py`, and run `record_outputs.py` to get the outputs of all basic models on the validation and test sets:
 
-	`python3 record_outputs.py /path/to/IP102 --num-classes 102`
+	python3 record_outputs.py /path/to/IP102 --num-classes 102
 
 Calculate vector-based weights for VecEnsemble and evaluate the recognition performance of VecEnsemble:
 
-	`python3 VecEnsemble.py`
+	python3 VecEnsemble.py
 
 Calculate matrix-based weights for MatEnsemble and evaluate the recognition performance of MatEnsemble:
 
-	`python3 MatEnsemble.py`
+	python3 MatEnsemble.py
+
+Ablation experiments with four ensemble methods (Hard Voting, Soft Voting, VecEnsemble and MatEnsemble):
+
+```
+python3 ablation_exp.py
+```
+
