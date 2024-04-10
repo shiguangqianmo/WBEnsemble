@@ -31,7 +31,7 @@ data prepare: IP102 dataset with the following folder structure.
 
 # 2. Train basic models
 
-Take fine-tuning ResNet-50, ViT-S/16, Volo-d1 and ViP-Small/7 on the IP102 dataset as an example (the pre-trained ResNet-50 and ViT-S/16 come from the timm library, and the pre-trained Volo-d1 and ViP-Small/7 come from their authors, with download links [volo_d1](https://github.com/sail-sg/volo/releases/download/volo_1/d1_224_84.2.pth.tar) and [vip_s7](https://drive.google.com/file/d/1cX6eauDrsGsLSZnqsX7cl0oiKX8Dzv5z/view?usp=sharing), respectively.) :
+Take fine-tuning ResNet-50, ViT-S/16, Volo-d1, and ViP-Small/7 on the IP102 dataset as an example (the pre-trained ResNet-50 and ViT-S/16 come from the timm library, and the pre-trained Volo-d1 and ViP-Small/7 come from their authors, with download links [volo_d1](https://github.com/sail-sg/volo/releases/download/volo_1/d1_224_84.2.pth.tar) and [vip_s7](https://drive.google.com/file/d/1cX6eauDrsGsLSZnqsX7cl0oiKX8Dzv5z/view?usp=sharing), respectively).
 
 
 <details>
@@ -39,7 +39,7 @@ Take fine-tuning ResNet-50, ViT-S/16, Volo-d1 and ViP-Small/7 on the IP102 datas
   train ResNet-50
 </summary>
 
-  	python3 train_basic_model.py /path/to/IP102 --num-classes 102 --img-size 224 --model resnet50 --pretrained --epochs 200 --opt adamw --lr 2e-3  --min-lr 1e-5 --sched cosine -b 128 --drop-path 0.2 --warmup-epochs 20 --weight-decay 5e-4
+  	python3 train_basic_model.py /path/to/IP102 --num-classes 102 --img-size 224 --model resnet50 --pretrained --epochs 200 --opt adamw --lr 2e-3  --min-lr 1e-5 --sched cosine -b 128 --warmup-epochs 20 --weight-decay 5e-4
 
 </details>
 
@@ -48,7 +48,7 @@ Take fine-tuning ResNet-50, ViT-S/16, Volo-d1 and ViP-Small/7 on the IP102 datas
   train ViT-S/16
 </summary>
 
-  	python3 train_basic_model.py /path/to/IP102 --num-classes 102 --img-size 224 --model vit_small_patch16_224 --pretrained --epochs 200 --opt adamw --lr 1e-4 --min-lr 1e-5 --sched cosine -b 64  --drop-path 0.2 --weight-decay 5e-4
+  	python3 train_basic_model.py /path/to/IP102 --num-classes 102 --img-size 224 --model vit_small_patch16_224 --pretrained --epochs 200 --opt adamw --lr 1e-4 --min-lr 1e-5 --sched cosine -b 64 --weight-decay 5e-4
 
 </details>
 
